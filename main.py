@@ -15,6 +15,3 @@ def askgpt(prompt):
         response = data["message"]
 
     return response
-
-if __name__ == "__main__":
-    app.run(port=80)
