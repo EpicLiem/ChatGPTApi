@@ -1,0 +1,20 @@
+from revChatGPT.V1 import Chatbot
+from flask import Flask
+app = Flask(__name__)
+
+chatbot = Chatbot(config={"access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik1UaEVOVUpHTkVNMVFURTRNMEZCTWpkQ05UZzVNRFUxUlRVd1FVSkRNRU13UmtGRVFrRXpSZyJ9.eyJodHRwczovL2FwaS5vcGVuYWkuY29tL3Byb2ZpbGUiOnsiZW1haWwiOiJsaWVtQGVwaWNsaWVtLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJnZW9pcF9jb3VudHJ5IjoiVVMifSwiaHR0cHM6Ly9hcGkub3BlbmFpLmNvbS9hdXRoIjp7InVzZXJfaWQiOiJ1c2VyLVFzYXZWOG1TcEJxejJYd0htWGZyZGFqSiJ9LCJpc3MiOiJodHRwczovL2F1dGgwLm9wZW5haS5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTQ1NTEzNzQ5MzQ4MTkzMTg3NjgiLCJhdWQiOlsiaHR0cHM6Ly9hcGkub3BlbmFpLmNvbS92MSIsImh0dHBzOi8vb3BlbmFpLm9wZW5haS5hdXRoMGFwcC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNjc2NDA5MTIwLCJleHAiOjE2Nzc2MTg3MjAsImF6cCI6IlRkSkljYmUxNldvVEh0Tjk1bnl5d2g1RTR5T282SXRHIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCBtb2RlbC5yZWFkIG1vZGVsLnJlcXVlc3Qgb3JnYW5pemF0aW9uLnJlYWQgb2ZmbGluZV9hY2Nlc3MifQ.RWuO8awIeDPepcU8kGPpwxLXP2rbmN-akzLnpdfgciR64M-61rhQN7-YgYlgVrmUO3U1BSsleigX5W-Y1nlzOcxcIOFL59_sKH0-IiDPnUdBsIl49fPardbX1IT1PCMDwymbHDYlv_q--GkOnn1Plh2yrICxi04CN86VRjjMuV7bLT2BS1KrOFlxqW0y1Fn1Wp_A7fXwTicO2wfC1S-gNwhWGiTmN7nm8VD_3D7PVywuAZUDZGLH-uku9xI2gXBKtMe2-1Uo5197jhjBkWcC1KmxRPPUm2Ov5WEJXxDYfpCK8XiZfi-qzWHFxuk96HlhKewDjqDFQ1GTlGZUOQZZUw"})
+
+@app.route("/askgpt/<prompt>")
+def askgpt(prompt):
+    response = ""
+    print(prompt)
+
+    for data in chatbot.ask(
+        prompt
+    ):
+        response = data["message"]
+
+    return response
+
+if __name__ == "__main__":
+    app.run()
